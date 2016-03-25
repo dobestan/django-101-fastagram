@@ -1,2 +1,1 @@
-Django==1.9.4
-pep8
+-r requirements/production.txt
