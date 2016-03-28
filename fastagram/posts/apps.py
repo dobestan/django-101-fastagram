@@ -5,4 +5,4 @@ class PostsAppConfig(AppConfig):
     name = "posts"
 
     def ready(self):
-        pass
+        from posts.signals.post_save import post_save_post
