@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from tags.models import Tag
+
 
 class Post(models.Model):
 
@@ -19,6 +21,15 @@ class Post(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True, )
     updated_at = models.DateTimeField(auto_now=True, )
+
+    tag_set = models.ManyToManyField(
+        Tag,
+    )
+    like_user_set = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='like_post_set',
+        through="Like",
+    )
 
     def init_hash_id(self):
         from fastagram.utils.hash_id import get_encoded_hash_id
