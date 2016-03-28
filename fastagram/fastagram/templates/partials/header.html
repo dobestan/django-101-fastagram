@@ -1,2 +1,10 @@
 <header id="header">
+  <ul>
+    {% if request.user.is_authenticated %}
+      <li><a href="{% url "logout" %}">logout</a></li>
+    {% else %}
+      <li><a href="{% url "signup" %}">signup</a></li>
+      <li><a href="{% url "login" %}">login</a></li>
+    {% endif %}
+  </ul>
 </header>
