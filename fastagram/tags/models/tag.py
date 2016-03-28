@@ -5,6 +5,7 @@ class Tag(models.Model):
 
     name = models.CharField(
         max_length=15,
+        unique=True,
     )
 
     created_at = models.DateTimeField(auto_now_add=True, )
