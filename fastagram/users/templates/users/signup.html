@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 
 
-{% block title %}로그인{% endblock %}
+{% block title %}회원가입{% endblock %}
 
 {% block content %}
-  <h1>LoginView</h1>
+  <h1>SignupView</h1>
 
-  <form action="{% url "login" %}" method="post">
+  <form action="{% url "signup" %}" method="post">
     {% csrf_token %}
     <input type="text" name="username" placeholder="username" required>
     <input type="password" name="password" placeholder="password" required>
-    <input type="hidden" name="next" value="{{ request.GET.next }}">
-    <input type="submit" value="login">
+    <input type="submit" value="signup">
   </form>
 {% endblock %}

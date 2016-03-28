@@ -1,13 +1,13 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login, authenticate, get_user_model
 from django.views.generic import View
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 
 
-class LoginView(View):
+class SignupView(View):
 
     def get(self, request):
-        template_name = "users/login.html"
+        template_name = "users/signup.html"
 
         return render(
             request,
@@ -18,14 +18,17 @@ class LoginView(View):
     def post(self, request):
         username = request.POST.get("username")
         password = request.POST.get("password")
-        next_page_url = request.POST.get("next") or reverse("home")
 
-        user = authenticate(
+        user = get_user_model().objects.create_user(
             username=username,
             password=password,
         )
 
-        if user:
-            login(request, user)
-            return redirect(next_page_url)
-        return redirect(reverse("login"))
+        # Automatically login user after signup
+        user = authenticate(
+            username=username,
+            password=password,
+        )
+        login(request, user)
+
+        return redirect(reverse("home"))
