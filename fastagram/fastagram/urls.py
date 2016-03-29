@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^posts/$', PostListView.as_view(), name='posts'),
     url(r'^posts/(?P<slug>\w+)/$', PostDetailView.as_view(), name='post'),
     url(r'^posts/(?P<slug>\w+)/comments/$', PostCommentCreateView.as_view(), name='post-comments'),
+    url(r'^posts/(?P<slug>\w+)/tags/$', PostTagCreateView.as_view(), name='post-tags'),
 
     url(r'^(?P<slug>\w+)/$', ProfileView.as_view(), name='profile'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
