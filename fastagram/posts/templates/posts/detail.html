@@ -7,5 +7,17 @@
 <h1>PostDetailView</h1>
 
 <img src="{{ post.image.url }}" alt="" width=300 height=300 />
-{{ post.content }}
+<p>
+  {{ post.content }}
+</p>
+
+<section>
+  <h2>Comments({{ post.comment_set.count }})</h2>
+
+  <ul>
+    {% for comment in post.comment_set.all %}
+    <li><p>{{ comment.content }}</p></li>
+    {% endfor %}
+  </ul>
+</section>
 {% endblock %}
