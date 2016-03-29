@@ -19,3 +19,12 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.full_name
+
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse(
+            "tag",
+            kwargs={
+                "slug": self.name,
+            }
+        )
