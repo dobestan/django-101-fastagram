@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^signup/$', SignupView.as_view(), name='signup'),
 
     url(r'^posts/$', PostListView.as_view(), name='posts'),
+    url(r'^posts/new/$', PostCreateView.as_view(), name='posts-create'),
     url(r'^posts/(?P<slug>\w+)/$', PostDetailView.as_view(), name='post'),
     url(r'^posts/(?P<slug>\w+)/comments/$', PostCommentCreateView.as_view(), name='post-comments'),
     url(r'^posts/(?P<slug>\w+)/tags/$', PostTagCreateView.as_view(), name='post-tags'),
