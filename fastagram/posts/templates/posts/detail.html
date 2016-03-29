@@ -33,4 +33,14 @@
     </p>
   {% endif %}
 </section>
+
+<section>
+  <h2>Tags({{ post.tag_set.count }})</h2>
+
+  <ul>
+    {% for tag in post.tag_set.all %}
+    <li>{{ tag.full_name }}</li>
+    {% endfor %}
+  </ul>
+</section>
 {% endblock %}
