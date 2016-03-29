@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block title %}포스트 리스트{% endblock %}
+
+{% block content %}
+<h1>PostListView</h1>
+
+<ul>
+  {% for post in posts %}
+  <li>
+    <a href="{% url "post" post.hash_id %}">
+      <img src="{{ post.image.url }}" alt="" width=300 height=300 />
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

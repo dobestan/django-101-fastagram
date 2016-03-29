@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ tag.full_name }}{% endblock %}
+
+{% block content %}
+<h1>{{ tag.full_name }}({{ tag.post_set.count }})</h1>
+
+<ul>
+  {% for post in tag.post_set.all %}
+  <li>
+    <a href="{% url "post" post.hash_id %}">
+      <img src="{{ post.image.url }}" alt="" width=300 height=300 />
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -8,10 +8,23 @@ class Tag(models.Model):
         unique=True,
     )
 
+    @property
+    def full_name(self):
+        return "#{tag_name}".format(
+            tag_name=self.name,
+        )
+
     created_at = models.DateTimeField(auto_now_add=True, )
     updated_at = models.DateTimeField(auto_now=True, )
 
     def __str__(self):
-        return "#{tag_name}".format(
-            tag_name=self.name,
+        return self.full_name
+
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse(
+            "tag",
+            kwargs={
+                "slug": self.name,
+            }
         )

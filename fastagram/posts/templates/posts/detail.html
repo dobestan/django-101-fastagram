@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+
+{% block title %}포스트 디테일{% endblock %}
+
+{% block content %}
+<h1>PostDetailView</h1>
+
+<img src="{{ post.image.url }}" alt="" width=300 height=300 />
+<p>
+  {{ post.content }}
+</p>
+
+<section>
+  <h2>Comments({{ post.comment_set.count }})</h2>
+
+  <ul>
+    {% for comment in post.comment_set.all %}
+    <li><p>{{ comment.content }}</p></li>
+    {% endfor %}
+  </ul>
+
+  {% if request.user.is_authenticated %}
+    <form action="{% url "post-comments" post.hash_id %}" method="post">
+      {% csrf_token %}
+        <input type="text" name="content" placeholder="content" required>
+        <input type="submit" value="댓글 달기">
+    </form>
+  {% else %}
+    <p>
+      댓글을 달기 위해서는 로그인이 필요합니다.
+      <a href="{% url "login" %}">로그인</a>
+    </p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Tags({{ post.tag_set.count }})</h2>
+
+  <ul>
+    {% for tag in post.tag_set.all %}
+    <li>
+      <a href="{% url "tag" tag.name %}">
+        {{ tag.full_name }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <form action="{% url "post-tags" post.hash_id %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="name" required>
+    <input type="submit" value="태그 등록">
+  </form>
+</section>
+{% endblock %}

@@ -24,6 +24,7 @@ class Post(models.Model):
 
     tag_set = models.ManyToManyField(
         Tag,
+        blank=True,
     )
     like_user_set = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
@@ -36,3 +37,12 @@ class Post(models.Model):
 
         self.hash_id = get_encoded_hash_id(self)
         self.save()
+
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse(
+            "post",
+            kwargs={
+                "slug": self.hash_id,
+            }
+        )
