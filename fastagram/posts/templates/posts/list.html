@@ -9,7 +9,7 @@
 <ul>
   {% for post in posts %}
   <li>
-    <a href="{% url "post" post.pk %}">
+    <a href="{% url "post" post.hash_id %}">
       <img src="{{ post.image.url }}" alt="" width=300 height=300 />
     </a>
   </li>
