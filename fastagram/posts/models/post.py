@@ -21,12 +21,9 @@ class Post(models.Model):
 
     @property
     def tagified_content(self):
-        tag_list = [
-            word.replace("#", "")
-            for word
-            in self.content.split(" ")
-            if word.startswith("#")
-        ]
+        from tags.utils.tagify import get_tag_list
+
+        tag_list = get_tag_list(self.content)
 
         word_list = [
             word
