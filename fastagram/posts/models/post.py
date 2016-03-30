@@ -21,27 +21,8 @@ class Post(models.Model):
 
     @property
     def tagified_content(self):
-        from tags.utils.tagify import get_tag_list
-
-        tag_list = get_tag_list(self.content)
-
-        word_list = [
-            word
-            for word
-            in self.content.split(" ")
-        ]
-
-        tagified_word_list = []
-
-        for word in word_list:
-            if word in ["#{tag_name}".format(tag_name=tag) for tag in tag_list]:
-                word = "<a href='{tag_url}'>{tag_name}</a> ".format(
-                    tag_name=word,
-                    tag_url=Tag.objects.get(name=word.replace("#", "")).get_absolute_url(),
-                )
-            tagified_word_list.append(word)
-
-        return " ".join(tagified_word_list)
+        from tags.utils.tagify import get_tagify_content
+        return get_tagify_content(self.content)
 
     created_at = models.DateTimeField(auto_now_add=True, )
     updated_at = models.DateTimeField(auto_now=True, )
