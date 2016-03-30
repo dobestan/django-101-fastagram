@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load tagify %}
 
 
 {% block title %}포스트 디테일{% endblock %}
@@ -8,7 +9,7 @@
 
 <img src="{{ post.image.url }}" alt="" width=300 height=300 />
 <p>
-  {{ post.content }}
+  {{ post.content | tagify | safe }}
 </p>
 
 <section>
