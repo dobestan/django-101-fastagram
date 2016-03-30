@@ -8,7 +8,7 @@
 
 <img src="{{ post.image.url }}" alt="" width=300 height=300 />
 <p>
-  {{ post.content }}
+  {{ post.tagified_content | safe }}
 </p>
 
 <section>
