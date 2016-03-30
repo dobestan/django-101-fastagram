@@ -19,11 +19,6 @@ class Post(models.Model):
     image = models.ImageField()
     content = models.TextField()
 
-    @property
-    def tagified_content(self):
-        from tags.utils.tagify import get_tagify_content
-        return get_tagify_content(self.content)
-
     created_at = models.DateTimeField(auto_now_add=True, )
     updated_at = models.DateTimeField(auto_now=True, )
 
