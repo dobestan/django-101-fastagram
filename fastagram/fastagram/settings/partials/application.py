@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'pipeline',
+
     'fastagram',
     'users',
     'posts',
@@ -83,6 +85,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+jSE_L10N = True
 
 USE_TZ = True

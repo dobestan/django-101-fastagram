@@ -1,9 +1,9 @@
-{% load staticfiles %}
+{% load pipeline %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>{% block title %}{% endblock %} | 패스타그램</title>
-    <link rel="stylesheet" href="{% static "css/application.css"%}" type="text/css">
+    {% stylesheet "application" %}
   </head>
   <body>
     {% include "partials/header.html" %}
